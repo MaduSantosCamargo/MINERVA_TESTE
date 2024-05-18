@@ -27,8 +27,17 @@ Lista de Tarefas
       <td>{{ todo.data_entrega }}</td>
       <td>{{ todo.data_finalizacao|default:"-" }}</td>
       <td>
-        <a href="#" class="btn btn-primary bt-sm">Concluir</a>
-        <a href="#" class="btn btn-danger bt-sm">Excluir</a>
+
+        <a 
+          href="{% url 'todos_complete' pk=todo.pk %}" 
+          class="btn btn-primary bt-sm {% if todo.data_finalizacao %}disabled{% endif %}">
+          Concluir
+        </a>
+        <a href="{% url 'todos_update' pk=todo.pk %}" 
+          class="btn btn-secondary bt-sm {% if todo.data_finalizacao %}disabled{% endif %}">
+          Editar
+        </a>
+        <a href="{% url 'todos_delete' pk=todo.pk %}" class="btn btn-danger bt-sm">Excluir</a>
       </td>
 
     </tr>
